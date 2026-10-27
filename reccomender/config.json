@@ -1,0 +1,35 @@
+{
+  "model": "SLIMElastic",
+  "dataset": "movies",
+  "data_path": "./dataset",
+
+  "load_col": {
+    "inter": [ "user_id", "item_id", "rating", "timestamp" ]
+  },
+  "USER_ID_FIELD": "user_id",
+  "ITEM_ID_FIELD": "item_id",
+  "RATING_FIELD": "rating",
+  "TIME_FIELD": "timestamp",
+
+  "val_interval": {
+    "rating": "[3.0, inf)"
+  },
+
+  "alpha": 0.1,
+  "l1_ratio": 0.05,
+  "positive_only": true,
+  "hide_item": true,
+
+  "epochs": 1,
+  "train_batch_size": 2048,
+
+  "metrics": [ "Recall", "MRR", "NDCG", "Hit" ],
+  "topk":,
+  "valid_metric": "NDCG@10",
+  "eval_args": {
+    "split": { "RS": [ 0.8, 0.1, 0.1 ] },
+    "group_by": "user",
+    "order": "RO",
+    "mode": "full"
+  }
+}
