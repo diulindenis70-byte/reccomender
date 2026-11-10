@@ -1,27 +1,6 @@
 # -*- coding: cp1251 -*-
 import sys
 import numpy as np
-
-# ПРИНУДИТЕЛЬНЫЙ ПОЛНЫЙ ПАТЧ ДЛЯ СОВМЕСТИМОСТИ NUMPY 2.0 + RECBOLE
-# Добавляем абсолютно все удаленные типы, включая unicode
-deprecated_types = {
-    'float_': np.float64,
-    'float': np.float64,
-    'complex_': np.complex128,
-    'complex': np.complex128,
-    'bool_': np.bool,
-    'int_': np.int64,
-    'int': np.int64,
-    'unicode_': np.str_,
-    'unicode': np.str_
-}
-
-for attr_name, target_type in deprecated_types.items():
-    if not hasattr(np, attr_name):
-        setattr(np, attr_name, target_type)
-    sys.modules[f'numpy.{attr_name}'] = target_type
-
-# Теперь безопасно импортируем RecBole
 import torch
 from recbole.config import Config
 from recbole.data import create_dataset, data_preparation
